@@ -4,5 +4,8 @@
         <label for="priceFilterInput">Prix max:</label>
         <input id="priceFilterInput" type="number" [(ngModel)]="prixMax">
     </div>
+    <div>
+        <button (click)="onValidate()">Valider</button>
+    </div>
     <p>Actuellement le plafond est défini à {{prixMax}}€</p>
 </fieldset>

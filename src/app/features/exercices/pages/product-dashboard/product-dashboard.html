@@ -1,3 +1,4 @@
 <h1>Vos produits</h1>
-<app-price-filter></app-price-filter>
-<app-product-list></app-product-list>
+<app-price-filter (prixEmetteur)="onReceiveNewPriceFilter($event)"></app-price-filter>
+<app-product-list [data]="products" [filtre]="prixMaxFilter"></app-product-list>
+<p>Filtre : {{prixMaxFilter}}</p>

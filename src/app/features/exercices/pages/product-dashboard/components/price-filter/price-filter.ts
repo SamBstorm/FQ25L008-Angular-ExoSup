@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,8 +8,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './price-filter.scss'
 })
 export class PriceFilter {
-
+  
   prixMax? : number;
+  
+  prixEmetteur = output<number | undefined>();
 
-
+  onValidate() : void {
+    this.prixEmetteur.emit(this.prixMax);
+  }
 }

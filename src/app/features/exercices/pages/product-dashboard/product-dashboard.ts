@@ -19,4 +19,10 @@ export class ProductDashboard {
     {nom : 'PC Gaming', photo : '', prix : 999.99, prixPromo : false , qttRestante : 5}
   ]
 
+  prixMaxFilter? : number;
+
+  onReceiveNewPriceFilter (value? :number) : void{
+    this.prixMaxFilter = value;
+  }
+
 }

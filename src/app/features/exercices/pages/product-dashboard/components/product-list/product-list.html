@@ -1,11 +1,15 @@
 <table>
     <tbody>
-        @for(prod of products; track $index){
-            <tr>
-                <td>{{prod.nom}}</td>
-                <td><img [src]="prod.photo" [alt]="prod.nom"></td>
-                <td>{{prod.nouveauPrix ?? prod.prix}} €</td>
-            </tr>
+        @for(prod of data(); track $index){
+            @if(
+                !filtre() ||
+                (filtre() && filtre()! >= (prod.nouveauPrix ?? prod.prix))){
+                <tr>
+                    <td>{{prod.nom}}</td>
+                    <td><img [src]="prod.photo" [alt]="prod.nom"></td>
+                    <td>{{prod.nouveauPrix ?? prod.prix}} €</td>
+                </tr>
+            }
         }
     </tbody>
 </table>

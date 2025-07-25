@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { Iproduct } from '../../models/iproduct';
 
 @Component({
@@ -9,7 +9,10 @@ import { Iproduct } from '../../models/iproduct';
 })
 export class ProductList {
 
-  products : Iproduct[] = [ ];
+  data : InputSignal<Iproduct[]> = input.required<Iproduct[]>();
+  //products : InputSignal<Iproduct[]> = input<Iproduct[]>([]);
+
+  filtre : InputSignal<number | undefined> = input<number | undefined>();
 
   
 }
