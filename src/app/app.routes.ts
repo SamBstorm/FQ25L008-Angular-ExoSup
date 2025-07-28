@@ -1,3 +1,4 @@
+import { DemoReactiveForms } from './features/demos/pages/demo-reactive-forms/demo-reactive-forms';
 import { Routes } from '@angular/router';
 import { ProductDashboard } from './features/exercices/pages/product-dashboard/product-dashboard';
 import { DemoNgcontent } from './features/demos/pages/demo-ngcontent/demo-ngcontent';
@@ -11,5 +12,6 @@ export const routes: Routes = [
     { path : 'demos/services', component : DemoServices },
     { path : 'demos/services-2', component : DemoServices2 },
     { path : 'demos/services-3', component : DemoServices3 },
+    { path : 'demos/reactForms', component : DemoReactiveForms },
     { path : '', redirectTo : 'exos/filtre', pathMatch : 'full'}
 ];

@@ -1,0 +1,61 @@
+<h1>Démonstration : Les formulaires réactifs</h1>
+
+<form [formGroup]="voitureForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="matricule">Immatriculation</label>
+        <input id="matricule" name="matricule" formControlName="matricule" type="text">
+        @if(voitureForm.get("matricule")?.touched && !voitureForm.get("matricule")?.valid){
+            @if(voitureForm.get("matricule")?.hasError('required')){
+                <p style="font-size: 0.5em; font-weight: bold; color: rgb(128,0,0);">L'immatriculation est obligatoire.</p>
+            }
+            @if(voitureForm.get("matricule")?.hasError('pattern')) {
+                <p style="font-size: 0.5em; font-weight: bold; color: rgb(128,0,0);">L'immatriculation n'est pas correcte.</p>
+            }
+        }
+    </div>
+    <div>
+        <label for="brand">Marque</label>
+        <input id="brand" name="brand" formControlName="brand" type="text">
+        @if(voitureForm.get("brand")?.touched && !voitureForm.get("brand")?.valid){
+            <p style="font-size: 0.5em; font-weight: bold; color: rgb(128,0,0);">La marque n'est pas correcte.</p>
+        }
+    </div>
+    <div>
+        <label for="model">Modèle</label>
+        <input id="model" name="model" formControlName="model" type="text">
+        @if(voitureForm.get("model")?.touched && !voitureForm.get("model")?.valid){
+            <p style="font-size: 0.5em; font-weight: bold; color: rgb(128,0,0);">Le model n'est pas correct.</p>
+        }
+    </div>
+    <fieldset>
+        <legend>Les conducteurs :</legend>
+        <button type="button" (click)="addNewConductor()">Ajouter conducteur</button>
+        @for(conductor of conductors.controls; track $index){
+            <fieldset [formGroup]="conductor">
+                <legend>Conducteur {{$index + 1}}</legend>
+                <div>
+                    <label for="firstname">Prénom : </label>
+                    <input id="firstname" name="firstname" formControlName="firstname" type="text">
+                </div>
+                <div>
+                    <label for="lastname">Nom : </label>
+                    <input id="lastname" name="lastname" formControlName="lastname" type="text">
+                </div>
+                <div>
+                    <label for="birthdate">Date de naissance : </label>
+                    <input id="birthdate" name="birthdate" formControlName="birthdate" type="date">
+                    @if(conductor.get("birthdate")?.touched && !conductor.get("birthdate")?.valid){
+                        @if(conductor.get("birthdate")?.hasError('required')){
+                            <p style="font-size: 0.5em; font-weight: bold; color: rgb(128,0,0);">La date de naissance est obligatoire.</p>
+                        }
+                        @if(conductor.get("birthdate")?.hasError('checkMajority')) {
+                            <p style="font-size: 0.5em; font-weight: bold; color: rgb(128,0,0);">Vous n'êtes pas majeur.</p>
+                        }
+                    }
+                </div>
+                <button type="button" (click)="removeConductor($index)">Supprimer le conducteur</button>
+            </fieldset>
+        }
+    </fieldset>
+    <button type="submit" [disabled]="voitureForm.invalid">Sauvegarder</button>
+</form>
