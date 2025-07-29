@@ -1,3 +1,4 @@
+import { Exercices } from './features/exercices/exercices';
 import { DemoReactiveForms } from './features/demos/pages/demo-reactive-forms/demo-reactive-forms';
 import { Routes } from '@angular/router';
 import { ProductDashboard } from './features/exercices/pages/product-dashboard/product-dashboard';
@@ -7,11 +8,17 @@ import { DemoServices2 } from './features/demos/pages/demo-services-2/demo-servi
 import { DemoServices3 } from './features/demos/pages/demo-services-3/demo-services-3';
 
 export const routes: Routes = [
-    { path : 'exos/filtre', component : ProductDashboard },
-    { path : 'demos/ngcontent', component : DemoNgcontent },
-    { path : 'demos/services', component : DemoServices },
-    { path : 'demos/services-2', component : DemoServices2 },
-    { path : 'demos/services-3', component : DemoServices3 },
-    { path : 'demos/reactForms', component : DemoReactiveForms },
-    { path : '', redirectTo : 'exos/filtre', pathMatch : 'full'}
+    { 
+        path : 'demos', 
+        loadChildren: () => import('./features/demos/demos.routes').then(r => r.routes)
+    },
+    { 
+        path : 'exos', 
+        loadChildren: () => import('./features/exercices/exercices.routes').then(r => r.routes)
+    },
+    { path : '', redirectTo : 'exos/filtre', pathMatch : 'full'},
+    { 
+        path : '**', 
+        loadComponent : () => import('./features/not-found.component/not-found.component').then(c => c.NotFoundComponent)
+    }
 ];

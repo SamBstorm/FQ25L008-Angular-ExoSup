@@ -1,0 +1,27 @@
+@if(users().length < 1){
+    <p>Pas d'utilisateurs...</p>
+}
+@else {
+    <table>
+        <thead>
+            <tr>
+                    <th>Identifiant</th>
+                    <th>Adresse e-mail</th>
+                    <th>Actions</th>
+                </tr>
+        </thead>
+        <tbody>
+            @for(user of users(); track $index){
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <button>Plus d'infos...</button>
+                        <button>Editer</button>
+                        <button>Supprimer</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
