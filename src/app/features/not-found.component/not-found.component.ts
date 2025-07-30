@@ -17,8 +17,11 @@ export class NotFoundComponent implements OnInit{
       () => this.timer-=1,
       1000
     );
-    setTimeout(
+    /*setTimeout(
       () => this._router.navigate(['/','demos']),
+      10000);*/
+    setTimeout(
+      () => this._router.navigateByUrl('/demos'),
       10000);
   }
 

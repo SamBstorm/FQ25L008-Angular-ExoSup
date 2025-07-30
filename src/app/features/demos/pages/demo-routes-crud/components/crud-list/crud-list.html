@@ -1,3 +1,9 @@
+@if(notification){
+    <div [style]="{color : (notification.type == 'error') ? 'rgb(128,0,0)' : 'rgb(0,128,0)', backgroundColor : (notification.type == 'error') ? 'rgb(255,128,128)' : 'rgb(128,255,128)' }">
+        <p>{{notification.msg}}</p>
+    </div>
+}
+
 @if(users().length < 1){
     <p>Pas d'utilisateurs...</p>
 }
@@ -16,7 +22,7 @@
                     <td>{{user.id}}</td>
                     <td>{{user.email}}</td>
                     <td>
-                        <button>Plus d'infos...</button>
+                        <button (click)="goToDetails(user.id)">Plus d'infos...</button>
                         <button>Editer</button>
                         <button>Supprimer</button>
                     </td>
