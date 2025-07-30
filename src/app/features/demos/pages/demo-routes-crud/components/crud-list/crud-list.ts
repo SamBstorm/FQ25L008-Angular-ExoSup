@@ -1,11 +1,11 @@
-import { Component, inject, OnInit, Signal } from '@angular/core';
-import { Iuser } from '../../models/iuser';
-import { UserService } from '../../services/user.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject, OnInit, Signal, signal } from '@angular/core';
+import { Iuser } from '../../../../../../core/models/iuser';
+import { UserService } from '../../../../../../core/services/user.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-crud-list',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './crud-list.html',
   styleUrl: './crud-list.scss'
 })
@@ -15,6 +15,7 @@ export class CrudList implements OnInit{
   private readonly _router : Router = inject(Router);
   
   users : Signal<Iuser[]> = this._userService.users;
+  currentUser : Signal<Iuser | null> = this._userService.currentUser;
 
   notification? : any;
   
@@ -33,6 +34,10 @@ export class CrudList implements OnInit{
 
   public goToDetails(id : number){
     this._router.navigate(['/','demos', 'routesCRUD','details',id])
+  }
+
+  public goToUpdate(id : number){
+    this._router.navigate(['/','demos', 'routesCRUD','update',id])
   }
   
 }

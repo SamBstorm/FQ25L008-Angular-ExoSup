@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../../../../core/services/user.service';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
-import { Iuser } from '../../models/iuser';
+import { Iuser } from '../../../../../../core/models/iuser';
 
 @Component({
   selector: 'app-crud-details',

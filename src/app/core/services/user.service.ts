@@ -19,6 +19,8 @@ export class UserService {
   }
 ]);
 
+  currentUser = signal<Iuser | null>(null);
+
   createUser(newUser : Iuser) : void{
     let idMax : number = Math.max(...this.users().map(u => u.id));
     newUser.id = idMax +1;
@@ -26,11 +28,13 @@ export class UserService {
   }
 
   updateUser(id : number, newValues : Iuser){
-    let userFound = this.users().find(u => u.id == id);
+    let users : Iuser[] = this.users();
+    let userFound = users.find(u => u.id == id);    
     if(!userFound) throw new Error(`No user with id : ${id}`);
-    userFound.email = newValues.email;
-    userFound.password = newValues.password;
-    userFound.role = newValues.role;
+    let userIndex : number = users.indexOf(userFound);
+    newValues.id = id;
+    users.splice(userIndex,1,newValues);
+    this.users.set(users);
   }
 
   getUser(id: number) : Iuser{
@@ -41,6 +45,15 @@ export class UserService {
 
   deleteUser(id: number) : void {
     this.users.update(value => value.filter(u => u.id != id));
+  }
+
+  login(email : string, password : string) : void{
+    let user : Iuser | undefined = this.users().find(u => u.email == email && u.password == password);
+    this.currentUser.set(user ?? null); 
+  }
+
+  logout() : void{
+    this.currentUser.set(null);
   }
 
 }

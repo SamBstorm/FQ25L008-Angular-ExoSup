@@ -1,1 +1,20 @@
-<p>crud-update works!</p>
+<h1>Utilisateur {{id}}</h1>
+
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="email">Email : </label>
+        <input type="email" name="email" id="email" formControlName="email">
+    </div>
+    <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" formControlName="password">
+    </div>
+    <div>
+        <label for="role">Rôle</label>
+        <select id="role" name="role" formControlName="role">
+            <option value="user" >User</option>
+            <option value="admin" >Admin</option>
+        </select>
+    </div>
+    <button type="submit">Sauvegarder</button>
+</form>

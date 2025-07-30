@@ -3,7 +3,9 @@
         <p>{{notification.msg}}</p>
     </div>
 }
-
+@if(currentUser()?.role == 'admin'){
+    <a routerLink="/demos/routesCRUD/create">Ajouter un nouvel utilisateur</a>
+}
 @if(users().length < 1){
     <p>Pas d'utilisateurs...</p>
 }
@@ -13,7 +15,9 @@
             <tr>
                     <th>Identifiant</th>
                     <th>Adresse e-mail</th>
-                    <th>Actions</th>
+                    @if(currentUser()){
+                        <th>Actions</th>
+                    }
                 </tr>
         </thead>
         <tbody>
@@ -21,11 +25,13 @@
                 <tr>
                     <td>{{user.id}}</td>
                     <td>{{user.email}}</td>
-                    <td>
-                        <button (click)="goToDetails(user.id)">Plus d'infos...</button>
-                        <button>Editer</button>
-                        <button>Supprimer</button>
-                    </td>
+                    @if(currentUser()){
+                        <td>
+                            <button (click)="goToDetails(user.id)">Plus d'infos...</button>
+                            <button (click)="goToUpdate(user.id)">Editer</button>
+                            <button>Supprimer</button>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>
