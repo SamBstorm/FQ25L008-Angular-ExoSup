@@ -25,4 +25,8 @@ export class DemoServices {
   onStart() : void{
     this._chrono.startChrono();
   }
+
+  onStop() : void {
+    this._chrono.stopChrono();
+  }
 }
