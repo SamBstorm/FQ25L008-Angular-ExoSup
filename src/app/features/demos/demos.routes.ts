@@ -15,7 +15,8 @@ export const routes : Routes = [
         { path : 'services-3', component : DemoServices3 },
         { path : 'reactForms', component : DemoReactiveForms },
         { path : 'routesCRUD', loadChildren : () => import('./pages/demo-routes-crud/demo-routes-crud.routes').then(r => r.routes)},
-        { path : 'observable', loadComponent : () => import('./pages/demo-observable/demo-observable').then(c => c.DemoObservable)}
+        { path : 'observable', loadComponent : () => import('./pages/demo-observable/demo-observable').then(c => c.DemoObservable)},
+        { path : 'storages', loadComponent : () => import('./pages/demo-storages.page/demo-storages.page').then(c => c.DemoStoragesPage)}
     ]},
     
 ]
